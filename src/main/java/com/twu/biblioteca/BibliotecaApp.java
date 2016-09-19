@@ -6,10 +6,6 @@ public class BibliotecaApp {
 
     public static final String COLUMN_GAP = "     ";
 
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
-    }
-
     public void start(){
         System.out.print("Welcome to Biblioteca!!");
     }

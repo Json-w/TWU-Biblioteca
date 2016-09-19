@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class BibliotecaTest {
@@ -20,11 +19,6 @@ public class BibliotecaTest {
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(outContent));
-    }
-
-    @Test
-    public void test() {
-        assertEquals(1, 1);
     }
 
     @Test
