@@ -1,6 +1,10 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.entity.Book;
+import com.twu.biblioteca.entity.Console;
+import com.twu.biblioteca.entity.Menu;
+import com.twu.biblioteca.entity.Option;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
