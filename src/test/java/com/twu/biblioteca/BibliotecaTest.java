@@ -71,10 +71,19 @@ public class BibliotecaTest {
         List<Option> options = new ArrayList<Option>();
         options.add(new Option(1,"listBooks"));
         Menu menu = new Menu(options,console);
+
         new BibliotecaApp(menu,console).start();
+
         inOrder.verify(console,times(1)).println("Welcome to Biblioteca!!");
         inOrder.verify(console).println("**********Menu**********");
         inOrder.verify(console).println("1.listBooks");
+    }
+
+    @Test
+    public void should_display_books_after_choose_listBooks_option() throws Exception {
+        new BibliotecaApp(console).start();
+
+        inOrder.verify(console).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @After

@@ -1,5 +1,7 @@
 package com.twu.biblioteca.entity;
 
+import java.util.Scanner;
+
 public class Console {
 
     public void print(String content) {
@@ -8,5 +10,10 @@ public class Console {
 
     public void println(String content) {
         System.out.println(content);
+    }
+
+    public int getNextInt() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 }
