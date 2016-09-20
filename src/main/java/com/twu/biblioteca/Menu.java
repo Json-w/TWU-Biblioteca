@@ -4,15 +4,17 @@ import java.util.List;
 
 public class Menu {
     private List<Option> options;
+    private Console console;
 
-    public Menu(List<Option> options) {
+    public Menu(List<Option> options, Console console) {
         this.options = options;
+        this.console = console;
     }
 
     public void show() {
-        System.out.println("**********Menu**********");
+        console.println("**********Menu**********");
         for (Option option : options) {
-            System.out.println(option.getId()+"."+option.getName());
+            console.println(option.getId()+"."+option.getName());
         }
     }
 }

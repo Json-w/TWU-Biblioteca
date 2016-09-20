@@ -4,6 +4,7 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -12,19 +13,25 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
 public class BibliotecaTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
+    private Console console;
+    private InOrder inOrder;
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(outContent));
+        console = mock(Console.class);
+        inOrder = inOrder(console);
     }
 
     @Test
     public void should_show_welcome_message_when_start_application() throws Exception {
-        new BibliotecaApp().start();
-        assertThat(outContent.toString(), is("Welcome to Biblioteca!!"));
+        new BibliotecaApp(console).start();
+        inOrder.verify(console).println("Welcome to Biblioteca!!");
     }
 
     @Test
@@ -36,10 +43,12 @@ public class BibliotecaTest {
         books.add(new Book("Head First Design"));
 
         //when
-        new BibliotecaApp().printBooks(books);
+        new BibliotecaApp(console).printBooks(books);
 
         //then
-        assertThat(outContent.toString(), is("Head First Java\nHead First Html\nHead First Design\n"));
+        inOrder.verify(console).println("Head First Java");
+        inOrder.verify(console).println("Head First Html");
+        inOrder.verify(console).println("Head First Design");
     }
 
     @Test
@@ -48,9 +57,20 @@ public class BibliotecaTest {
         List<Book> books = new ArrayList<Book>();
         books.add(new Book("Head First Java","Kathy Sierra Bert Bates",2007));
 
-        new BibliotecaApp().printBooks(books);
+        new BibliotecaApp(console).printBooks(books);
 
-        assertThat(outContent.toString(),is("Head First Java     Kathy Sierra Bert Bates     2007\n"));
+        inOrder.verify(console).println("Head First Java     Kathy Sierra Bert Bates     2007");
+    }
+
+    @Test
+    public void should_display_menu_after_welcome_message() throws Exception {
+        List<Option> options = new ArrayList<Option>();
+        options.add(new Option(1,"listBooks"));
+        Menu menu = new Menu(options,console);
+        new BibliotecaApp(menu,console).start();
+        inOrder.verify(console,times(1)).println("Welcome to Biblioteca!!");
+        inOrder.verify(console).println("**********Menu**********");
+        inOrder.verify(console).println("1.listBooks");
     }
 
     @After

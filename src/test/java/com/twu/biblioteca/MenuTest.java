@@ -23,7 +23,7 @@ public class MenuTest {
     public void should_show_list_books_option_on_menu() throws Exception {
         List<Option> options = new ArrayList<Option>();
         options.add(new Option(1,"listBooks"));
-        Menu menu = new Menu(options);
+        Menu menu = new Menu(options,new Console());
 
         menu.show();
 

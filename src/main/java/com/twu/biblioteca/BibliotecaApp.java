@@ -1,19 +1,43 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BibliotecaApp {
-
     public static final String COLUMN_GAP = "     ";
+    private Menu menu;
+    private Console console;
+
+    public BibliotecaApp(Menu menu) {
+        this.menu = menu;
+    }
+
+    public BibliotecaApp(Console console) {
+        this.console = console;
+        this.menu = initMenu();
+    }
+
+    private Menu initMenu() {
+        List<Option> options = new ArrayList<Option>();
+        options.add(new Option(1,"listBooks"));
+        Menu menu = new Menu(options,new Console());
+        return menu;
+    }
+
+    public BibliotecaApp(Menu menu, Console console) {
+        this.menu = menu;
+        this.console = console;
+    }
 
     public void start(){
-        System.out.print("Welcome to Biblioteca!!");
+        console.println("Welcome to Biblioteca!!");
+        menu.show();
     }
 
     public void printBooks(List<Book> books) {
         for (Book book : books) {
             StringBuffer detailInfo = formatBookInfo(book);
-            System.out.println(detailInfo.toString());
+            console.println(detailInfo.toString());
         }
     }
 
