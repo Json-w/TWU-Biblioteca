@@ -51,4 +51,12 @@ public class ConsoleTest {
 
         assertThat(console.getNextInt(),is(1));
     }
+
+    @Test
+    public void should_get_string_when_getNextString_with_input() throws Exception {
+        String userInput = "refactor";
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
+        assertThat(console.getNextString(),is("refactor"));
+    }
 }

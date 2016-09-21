@@ -17,4 +17,9 @@ public class Console {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+
+    public String getNextString() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
 }
