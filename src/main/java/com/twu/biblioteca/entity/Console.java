@@ -1,5 +1,6 @@
 package com.twu.biblioteca.entity;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console {
@@ -12,7 +13,7 @@ public class Console {
         System.out.println(content);
     }
 
-    public int getNextInt() {
+    public int getNextInt() throws InputMismatchException{
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }

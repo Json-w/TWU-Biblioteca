@@ -10,6 +10,7 @@ import org.mockito.InOrder;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -98,6 +99,15 @@ public class BibliotecaTest {
 
         inOrder.verify(console,times(1)).println("invalid menu option,please enter correct option.");
         inOrder.verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
+    }
+
+    @Test
+    public void should_show_notification_when_catch_InputMismatchException() throws Exception {
+        when(console.getNextInt()).thenThrow(InputMismatchException.class).thenReturn(0);
+
+        new BibliotecaApp(console).start();
+
+        inOrder.verify(console,times(1)).println("invalid menu option,please enter correct option.");
     }
 
     @After
