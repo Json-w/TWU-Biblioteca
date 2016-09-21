@@ -17,4 +17,8 @@ public class Menu {
             console.println(option.getId()+"."+option.getName());
         }
     }
+
+    public List<Option> getOptions() {
+        return options;
+    }
 }

@@ -17,9 +17,7 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 public class BibliotecaTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -81,9 +79,11 @@ public class BibliotecaTest {
 
     @Test
     public void should_display_books_after_choose_listBooks_option() throws Exception {
+        when(console.getNextInt()).thenReturn(1).thenReturn(0);
+
         new BibliotecaApp(console).start();
 
-        inOrder.verify(console).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        inOrder.verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @After

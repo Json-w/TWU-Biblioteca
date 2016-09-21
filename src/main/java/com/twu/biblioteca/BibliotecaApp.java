@@ -12,21 +12,30 @@ public class BibliotecaApp {
     public static final String COLUMN_GAP = "     ";
     private Menu menu;
     private Console console;
+    private List<Book> books;
 
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
+        initBooks();
     }
 
     public BibliotecaApp(Console console) {
         this.console = console;
         this.menu = initMenu();
+        initBooks();
     }
 
     private Menu initMenu() {
         List<Option> options = new ArrayList<Option>();
-        options.add(new Option(1,"listBooks"));
-        Menu menu = new Menu(options,new Console());
+        options.add(new Option(1, "listBooks"));
+        Menu menu = new Menu(options, new Console());
         return menu;
+    }
+
+    private List<Book> initBooks(){
+        books = new ArrayList<Book>();
+        books.add(new Book("Head First Java","Kathy Sierra Bert Bates",2007));
+        return books;
     }
 
     public BibliotecaApp(Menu menu, Console console) {
@@ -34,9 +43,20 @@ public class BibliotecaApp {
         this.console = console;
     }
 
-    public void start(){
+    public void start() {
         console.println("Welcome to Biblioteca!!");
-        menu.show();
+        while (true) {
+            menu.show();
+            int chooseResult = console.getNextInt();
+            if (chooseResult == 0){
+                break;
+            }
+            for (Option option : menu.getOptions()) {
+                if (chooseResult == option.getId()){
+                    printBooks(books);
+                }
+            }
+        }
     }
 
     public void printBooks(List<Book> books) {
@@ -48,11 +68,11 @@ public class BibliotecaApp {
 
     private StringBuffer formatBookInfo(Book book) {
         StringBuffer detailInfo = new StringBuffer(book.getName());
-        if(book.getAuthor()!=null){
+        if (book.getAuthor() != null) {
             detailInfo.append(COLUMN_GAP);
             detailInfo.append(book.getAuthor());
         }
-        if (book.getPublishYear()!=0){
+        if (book.getPublishYear() != 0) {
             detailInfo.append("     ");
             detailInfo.append(book.getPublishYear());
         }
