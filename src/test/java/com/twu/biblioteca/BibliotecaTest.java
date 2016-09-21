@@ -31,7 +31,7 @@ public class BibliotecaTest {
     @Test
     public void should_show_welcome_message_when_start_application() throws Exception {
         new BibliotecaApp(console).start();
-        inOrder.verify(console).println("Welcome to Biblioteca!!");
+        verify(console).println("Welcome to Biblioteca!!");
     }
 
     @Test
@@ -65,7 +65,7 @@ public class BibliotecaTest {
         when(console.getNextInt()).thenReturn(1).thenReturn(0);
         bibliotecaApp.start();
 
-        inOrder.verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @Test
@@ -88,7 +88,7 @@ public class BibliotecaTest {
 
         new BibliotecaApp(console).start();
 
-        inOrder.verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @Test
@@ -107,7 +107,7 @@ public class BibliotecaTest {
 
         new BibliotecaApp(console).start();
 
-        inOrder.verify(console,times(1)).println("invalid menu option,please enter correct option.");
+        verify(console,times(1)).println("invalid menu option,please enter correct option.");
     }
 
     @After
