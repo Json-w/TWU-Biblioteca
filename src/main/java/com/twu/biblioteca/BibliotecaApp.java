@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.entity.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class BibliotecaApp {
@@ -24,7 +25,7 @@ public class BibliotecaApp {
     private Menu initMenu() {
         List<Option> options = new ArrayList<Option>();
         options.add(new ListBooksOption(1, "listBooks",this));
-        Menu menu = new Menu(options, new Console());
+        Menu menu = new Menu(options, console);
         return menu;
     }
 
@@ -43,7 +44,13 @@ public class BibliotecaApp {
         console.println("Welcome to Biblioteca!!");
         while (true) {
             menu.show();
-            int chooseResult = console.getNextInt();
+            int chooseResult;
+            try {
+                chooseResult = console.getNextInt();
+            }catch (InputMismatchException e){
+                console.println("invalid menu option,please enter correct option.");
+                continue;
+            }
             if (chooseResult == 0){
                 break;
             }

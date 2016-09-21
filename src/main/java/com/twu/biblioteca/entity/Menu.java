@@ -14,7 +14,7 @@ public class Menu {
     public void show() {
         console.println("**********Menu**********");
         for (Option option : options) {
-            console.println(option.getId()+"."+option.getName());
+            console.println(option.getId() + "." + option.getName());
         }
     }
 
@@ -23,10 +23,15 @@ public class Menu {
     }
 
     public void selectOption(int chooseResult) {
+        int count = 0;
         for (Option option : options) {
-            if (chooseResult == option.getId()){
+            if (chooseResult == option.getId()) {
+                count++;
                 option.execute();
             }
+        }
+        if (count == 0) {
+            console.println("invalid menu option,please enter correct option.");
         }
     }
 }
