@@ -10,6 +10,7 @@ public class BibliotecaApp {
     private Menu menu;
     private Console console;
     private List<Book> books;
+    private int appStatus;
 
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
@@ -25,6 +26,7 @@ public class BibliotecaApp {
     private Menu initMenu() {
         List<Option> options = new ArrayList<Option>();
         options.add(new ListBooksOption(1, "listBooks",this));
+        options.add(new ExitOption(0,"quit",this));
         Menu menu = new Menu(options, console);
         return menu;
     }
@@ -41,6 +43,7 @@ public class BibliotecaApp {
     }
 
     public void start() {
+        appStatus = 1;
         console.println("Welcome to Biblioteca!!");
         while (true) {
             menu.show();
@@ -51,10 +54,10 @@ public class BibliotecaApp {
                 console.println("invalid menu option,please enter correct option.");
                 continue;
             }
-            if (chooseResult == 0){
-                break;
-            }
            menu.selectOption(chooseResult);
+           if(appStatus !=1){
+               break;
+           }
         }
     }
 
@@ -68,5 +71,9 @@ public class BibliotecaApp {
 
     public Console getConsole() {
         return console;
+    }
+
+    public void stop(){
+        appStatus = 0;
     }
 }

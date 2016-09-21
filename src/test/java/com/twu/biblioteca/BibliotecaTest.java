@@ -70,11 +70,8 @@ public class BibliotecaTest {
 
     @Test
     public void should_display_menu_after_welcome_message() throws Exception {
-        List<Option> options = new ArrayList<Option>();
-        Menu menu = new Menu(options,console);
-
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(menu, console);
-        options.add(new ListBooksOption(1,"listBooks", bibliotecaApp));
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
+        when(console.getNextInt()).thenReturn(0);
         bibliotecaApp.start();
 
         inOrder.verify(console,times(1)).println("Welcome to Biblioteca!!");
@@ -108,6 +105,16 @@ public class BibliotecaTest {
         new BibliotecaApp(console).start();
 
         verify(console,times(1)).println("invalid menu option,please enter correct option.");
+    }
+
+    @Test
+    public void should_exit_system_when_choose_quite_option() throws Exception {
+        when(console.getNextInt()).thenReturn(1).thenReturn(0);
+
+        new BibliotecaApp(console).start();
+
+        inOrder.verify(console).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        inOrder.verify(console).println("Exit System!");
     }
 
     @After
