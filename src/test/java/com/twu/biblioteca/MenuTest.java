@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.entity.Console;
+import com.twu.biblioteca.entity.ListBooksOption;
 import com.twu.biblioteca.entity.Menu;
 import com.twu.biblioteca.entity.Option;
 import org.junit.Before;
@@ -25,8 +26,8 @@ public class MenuTest {
     @Test
     public void should_show_list_books_option_on_menu() throws Exception {
         List<Option> options = new ArrayList<Option>();
-        options.add(new Option(1,"listBooks"));
         Menu menu = new Menu(options,new Console());
+        options.add(new ListBooksOption(1,"listBooks",new BibliotecaApp(menu)));
 
         menu.show();
 

@@ -1,6 +1,8 @@
 package com.twu.biblioteca.entity;
 
-public class Option {
+import com.twu.biblioteca.Executable;
+
+public abstract class Option implements Executable{
 
     private int id;
     private String name;

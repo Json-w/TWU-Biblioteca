@@ -1,10 +1,7 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.entity.Book;
-import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.entity.Menu;
-import com.twu.biblioteca.entity.Option;
+import com.twu.biblioteca.entity.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,12 +42,15 @@ public class BibliotecaTest {
         books.add(new Book("Head First Design"));
 
         //when
-        new BibliotecaApp(console).printBooks(books);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
+        bibliotecaApp.setBooks(books);
+        when(console.getNextInt()).thenReturn(1).thenReturn(0);
+        bibliotecaApp.start();
 
         //then
-        inOrder.verify(console).println("Head First Java");
-        inOrder.verify(console).println("Head First Html");
-        inOrder.verify(console).println("Head First Design");
+        inOrder.verify(console,times(1)).println("Head First Java");
+        inOrder.verify(console,times(1)).println("Head First Html");
+        inOrder.verify(console,times(1)).println("Head First Design");
     }
 
     @Test
@@ -59,18 +59,22 @@ public class BibliotecaTest {
         List<Book> books = new ArrayList<Book>();
         books.add(new Book("Head First Java","Kathy Sierra Bert Bates",2007));
 
-        new BibliotecaApp(console).printBooks(books);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
+        bibliotecaApp.setBooks(books);
+        when(console.getNextInt()).thenReturn(1).thenReturn(0);
+        bibliotecaApp.start();
 
-        inOrder.verify(console).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        inOrder.verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @Test
     public void should_display_menu_after_welcome_message() throws Exception {
         List<Option> options = new ArrayList<Option>();
-        options.add(new Option(1,"listBooks"));
         Menu menu = new Menu(options,console);
 
-        new BibliotecaApp(menu,console).start();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(menu, console);
+        options.add(new ListBooksOption(1,"listBooks", bibliotecaApp));
+        bibliotecaApp.start();
 
         inOrder.verify(console,times(1)).println("Welcome to Biblioteca!!");
         inOrder.verify(console).println("**********Menu**********");

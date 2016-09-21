@@ -1,15 +1,11 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.entity.Book;
-import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.entity.Menu;
-import com.twu.biblioteca.entity.Option;
+import com.twu.biblioteca.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BibliotecaApp {
-    public static final String COLUMN_GAP = "     ";
     private Menu menu;
     private Console console;
     private List<Book> books;
@@ -27,7 +23,7 @@ public class BibliotecaApp {
 
     private Menu initMenu() {
         List<Option> options = new ArrayList<Option>();
-        options.add(new Option(1, "listBooks"));
+        options.add(new ListBooksOption(1, "listBooks",this));
         Menu menu = new Menu(options, new Console());
         return menu;
     }
@@ -51,31 +47,19 @@ public class BibliotecaApp {
             if (chooseResult == 0){
                 break;
             }
-            for (Option option : menu.getOptions()) {
-                if (chooseResult == option.getId()){
-                    printBooks(books);
-                }
-            }
+           menu.selectOption(chooseResult);
         }
     }
 
-    public void printBooks(List<Book> books) {
-        for (Book book : books) {
-            StringBuffer detailInfo = formatBookInfo(book);
-            console.println(detailInfo.toString());
-        }
+    public List<Book> getBooks() {
+        return books;
     }
 
-    private StringBuffer formatBookInfo(Book book) {
-        StringBuffer detailInfo = new StringBuffer(book.getName());
-        if (book.getAuthor() != null) {
-            detailInfo.append(COLUMN_GAP);
-            detailInfo.append(book.getAuthor());
-        }
-        if (book.getPublishYear() != 0) {
-            detailInfo.append("     ");
-            detailInfo.append(book.getPublishYear());
-        }
-        return detailInfo;
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public Console getConsole() {
+        return console;
     }
 }

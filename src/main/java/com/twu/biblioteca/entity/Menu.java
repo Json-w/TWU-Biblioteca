@@ -21,4 +21,12 @@ public class Menu {
     public List<Option> getOptions() {
         return options;
     }
+
+    public void selectOption(int chooseResult) {
+        for (Option option : options) {
+            if (chooseResult == option.getId()){
+                option.execute();
+            }
+        }
+    }
 }
