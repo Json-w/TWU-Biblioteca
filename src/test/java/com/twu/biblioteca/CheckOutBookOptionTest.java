@@ -11,6 +11,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class CheckOutBookOptionTest {
@@ -36,5 +37,6 @@ public class CheckOutBookOptionTest {
 
         assertThat(bibliotecaApp.getBooks().size(), is(1));
         assertThat(bibliotecaApp.getBooks().get(0).getName(), is("Head First Java"));
+        verify(console).println("Thank you!Enjoy the book");
     }
 }

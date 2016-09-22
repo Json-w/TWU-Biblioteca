@@ -26,6 +26,7 @@ public class BibliotecaApp {
     private Menu initMenu() {
         List<Option> options = new ArrayList<Option>();
         options.add(new ListBooksOption(1, "listBooks",this));
+        options.add(new CheckOutBookOption(2,"checkout book",this));
         options.add(new ExitOption(0,"quit",this));
         Menu menu = new Menu(options, console);
         return menu;
@@ -34,6 +35,7 @@ public class BibliotecaApp {
     private List<Book> initBooks(){
         books = new ArrayList<Book>();
         books.add(new Book("Head First Java","Kathy Sierra Bert Bates",2007));
+        books.add(new Book("Refactor", "Martin Flower", 2008));
         return books;
     }
 

@@ -22,12 +22,16 @@ public class CheckOutBookOption extends Option{
     public void execute() {
         String checkoutBookName = console.getNextString();
         List<Book> booksAfterCheckout = new ArrayList<Book>();
-        //// TODO: 9/22/16 check if the list can directly remove item
-        for (Book book : bibliotecaApp.getBooks()) {
+        // TODO: 9/22/16 check if the list can directly remove item
+        List<Book> beforeCheckout = bibliotecaApp.getBooks();
+        for (Book book : beforeCheckout) {
             if (!checkoutBookName.equals(book.getName())){
                 booksAfterCheckout.add(book);
             }
         }
         bibliotecaApp.setBooks(booksAfterCheckout);
+        if(beforeCheckout.size()>booksAfterCheckout.size()){
+            console.println("Thank you!Enjoy the book");
+        }
     }
 }

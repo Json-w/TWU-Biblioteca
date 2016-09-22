@@ -90,7 +90,7 @@ public class BibliotecaTest {
 
     @Test
     public void should_show_notification_when_input_invalid_menu_option() throws Exception {
-        when(console.getNextInt()).thenReturn(2).thenReturn(1).thenReturn(0);
+        when(console.getNextInt()).thenReturn(-1).thenReturn(1).thenReturn(0);
 
         new BibliotecaApp(console).start();
 
@@ -113,6 +113,18 @@ public class BibliotecaTest {
 
         new BibliotecaApp(console).start();
 
+        inOrder.verify(console).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        inOrder.verify(console).println("Exit System!");
+    }
+
+    @Test
+    public void should_checkout_books() throws Exception {
+        when(console.getNextInt()).thenReturn(2).thenReturn(1).thenReturn(0);
+        when(console.getNextString()).thenReturn("Refactor");
+
+        new BibliotecaApp(console).start();
+
+        inOrder.verify(console).println("2.checkout book");
         inOrder.verify(console).println("Head First Java     Kathy Sierra Bert Bates     2007");
         inOrder.verify(console).println("Exit System!");
     }
