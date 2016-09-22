@@ -16,21 +16,23 @@ import static org.mockito.Mockito.when;
 
 public class CheckOutBookOptionTest {
     private Console console;
-
+    private CheckOutBookOption checkOutBookOption;
+    private BibliotecaApp bibliotecaApp;
     @Before
     public void setUp() throws Exception {
         this.console = mock(Console.class);
 
-    }
-
-    @Test
-    public void should_remove_the_checked_book_after_check_out() throws Exception {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
+        bibliotecaApp = new BibliotecaApp(console);
         List<Book> books = new ArrayList<Book>();
         books.add(new Book("Head First Java", "Kathy Sierra Bert Bates", 2007));
         books.add(new Book("Refactor", "Martin Flower", 2008));
         bibliotecaApp.setBooks(books);
-        CheckOutBookOption checkOutBookOption = new CheckOutBookOption(2, "Check out book", bibliotecaApp);
+
+        checkOutBookOption = new CheckOutBookOption(2, "Check out book", bibliotecaApp);
+    }
+
+    @Test
+    public void should_remove_the_checked_book_after_check_out() throws Exception {
         when(console.getNextString()).thenReturn("Refactor");
 
         checkOutBookOption.execute();
@@ -42,13 +44,7 @@ public class CheckOutBookOptionTest {
 
     @Test
     public void should_show_unavailable_information_when_checkout_failure() throws Exception {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
-        List<Book> books = new ArrayList<Book>();
-        books.add(new Book("Head First Java", "Kathy Sierra Bert Bates", 2007));
-        books.add(new Book("Refactor", "Martin Flower", 2008));
-        bibliotecaApp.setBooks(books);
 
-        CheckOutBookOption checkOutBookOption = new CheckOutBookOption(2, "Check out book", bibliotecaApp);
         when(console.getNextString()).thenReturn("Refactor-error-spell");
 
         checkOutBookOption.execute();
