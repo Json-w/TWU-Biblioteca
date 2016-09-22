@@ -32,6 +32,8 @@ public class CheckOutBookOption extends Option{
         bibliotecaApp.setBooks(booksAfterCheckout);
         if(beforeCheckout.size()>booksAfterCheckout.size()){
             console.println("Thank you!Enjoy the book");
+        }else{
+            console.println("That book is not available.");
         }
     }
 }

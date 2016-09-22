@@ -39,4 +39,19 @@ public class CheckOutBookOptionTest {
         assertThat(bibliotecaApp.getBooks().get(0).getName(), is("Head First Java"));
         verify(console).println("Thank you!Enjoy the book");
     }
+
+    @Test
+    public void should_show_unavailable_information_when_checkout_failure() throws Exception {
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
+        List<Book> books = new ArrayList<Book>();
+        books.add(new Book("Head First Java", "Kathy Sierra Bert Bates", 2007));
+        books.add(new Book("Refactor", "Martin Flower", 2008));
+        bibliotecaApp.setBooks(books);
+
+        CheckOutBookOption checkOutBookOption = new CheckOutBookOption(2, "Check out book", bibliotecaApp);
+        when(console.getNextString()).thenReturn("Refactor-error-spell");
+
+        checkOutBookOption.execute();
+        verify(console).println("That book is not available.");
+    }
 }
