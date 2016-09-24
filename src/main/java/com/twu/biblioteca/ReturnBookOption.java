@@ -20,7 +20,11 @@ public class ReturnBookOption extends Option {
     @Override
     public void execute() {
         String readyReturnBookName = console.getNextString();
-        validateBookAndDeleteItOnCheckedOutBooks(readyReturnBookName);
+        if(validateBookAndDeleteItOnCheckedOutBooks(readyReturnBookName)){
+            console.println("Thank you for returning the book.");
+        }else{
+            console.println("That is not a valid book to return.");
+        }
     }
 
     private boolean validateBookAndDeleteItOnCheckedOutBooks(String readyReturnBookName) {
