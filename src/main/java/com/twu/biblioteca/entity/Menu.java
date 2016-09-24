@@ -1,5 +1,7 @@
 package com.twu.biblioteca.entity;
 
+import com.twu.biblioteca.option.Option;
+
 import java.util.List;
 
 public class Menu {

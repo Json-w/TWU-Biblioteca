@@ -1,6 +1,4 @@
-package com.twu.biblioteca.entity;
-
-import com.twu.biblioteca.Executable;
+package com.twu.biblioteca.option;
 
 public abstract class Option implements Executable{
 
