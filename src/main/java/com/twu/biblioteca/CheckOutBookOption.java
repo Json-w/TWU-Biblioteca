@@ -27,6 +27,8 @@ public class CheckOutBookOption extends Option{
         for (Book book : beforeCheckout) {
             if (!checkoutBookName.equals(book.getName())){
                 booksAfterCheckout.add(book);
+            }else {
+                bibliotecaApp.getCheckedOutBooks().add(book);
             }
         }
         bibliotecaApp.setBooks(booksAfterCheckout);
