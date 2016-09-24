@@ -11,6 +11,7 @@ public class BibliotecaApp {
     private Console console;
     private List<Book> books;
     private int appStatus;
+    private List<Book> checkedOutBooks;
 
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
@@ -77,5 +78,13 @@ public class BibliotecaApp {
 
     public void stop(){
         appStatus = 0;
+    }
+
+    public void setCheckedOutBooks(List<Book> checkedOutBooks) {
+        this.checkedOutBooks = checkedOutBooks;
+    }
+
+    public List<Book> getCheckedOutBooks() {
+        return checkedOutBooks;
     }
 }
