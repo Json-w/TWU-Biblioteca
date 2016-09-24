@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.option.ListBooksOption;
 import com.twu.biblioteca.entity.Menu;
+import com.twu.biblioteca.option.ListBooksOption;
 import com.twu.biblioteca.option.Option;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,8 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.entity.*;
+import com.twu.biblioteca.entity.Book;
+import com.twu.biblioteca.entity.Console;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +14,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class BibliotecaTest {

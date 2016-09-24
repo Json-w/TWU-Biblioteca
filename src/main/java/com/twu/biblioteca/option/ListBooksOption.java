@@ -3,7 +3,6 @@ package com.twu.biblioteca.option;
 import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.option.Option;
 
 public class ListBooksOption extends Option {
     public static final String COLUMN_GAP = "     ";

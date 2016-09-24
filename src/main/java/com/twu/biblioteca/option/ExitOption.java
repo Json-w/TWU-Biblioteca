@@ -2,7 +2,6 @@ package com.twu.biblioteca.option;
 
 import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.option.Option;
 
 public class ExitOption extends Option {
     private Console console;

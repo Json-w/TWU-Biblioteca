@@ -3,7 +3,6 @@ package com.twu.biblioteca.option;
 import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.option.Option;
 
 import java.util.List;
 

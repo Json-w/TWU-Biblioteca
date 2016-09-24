@@ -3,7 +3,6 @@ package com.twu.biblioteca.option;
 import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.option.Option;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,6 @@ public class CheckOutBookOption extends Option{
     public void execute() {
         String checkoutBookName = console.getNextString();
         List<Book> booksAfterCheckout = new ArrayList<Book>();
-        // TODO: 9/22/16 check if the list can directly remove item
         List<Book> beforeCheckout = bibliotecaApp.getBooks();
         for (Book book : beforeCheckout) {
             if (!checkoutBookName.equals(book.getName())){
