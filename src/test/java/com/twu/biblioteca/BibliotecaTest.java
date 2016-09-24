@@ -129,6 +129,16 @@ public class BibliotecaTest {
         inOrder.verify(console).println("Exit System!");
     }
 
+    @Test
+    public void should_return_book_success() throws Exception {
+        when(console.getNextInt()).thenReturn(2).thenReturn(1).thenReturn(3).thenReturn(0);
+        when(console.getNextString()).thenReturn("Refactor").thenReturn("Refactor");
+
+        new BibliotecaApp(console).start();
+        inOrder.verify(console).println("3.return book");
+        inOrder.verify(console).println("Thank you for returning the book.");
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(null);

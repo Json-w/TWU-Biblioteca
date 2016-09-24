@@ -11,7 +11,7 @@ public class BibliotecaApp {
     private Console console;
     private List<Book> books;
     private int appStatus;
-    private List<Book> checkedOutBooks;
+    private List<Book> checkedOutBooks = new ArrayList<Book>();
 
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
@@ -28,6 +28,7 @@ public class BibliotecaApp {
         List<Option> options = new ArrayList<Option>();
         options.add(new ListBooksOption(1, "listBooks",this));
         options.add(new CheckOutBookOption(2,"checkout book",this));
+        options.add(new ReturnBookOption(3,"return book",this));
         options.add(new ExitOption(0,"quit",this));
         Menu menu = new Menu(options, console);
         return menu;
