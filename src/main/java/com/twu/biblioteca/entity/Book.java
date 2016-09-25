@@ -1,6 +1,6 @@
 package com.twu.biblioteca.entity;
 
-public class Book {
+public class Book extends Item{
     public static final String COLUMN_GAP = "     ";
     private String name;
     private String author;

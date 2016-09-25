@@ -1,33 +1,36 @@
 package com.twu.biblioteca.option;
 
 import com.twu.biblioteca.BibliotecaApp;
-import com.twu.biblioteca.entity.Movie;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CheckOutMovieOption extends Option{
+public class CheckOutMovieOption extends CheckOutItemOption{
     public CheckOutMovieOption(int id, String name, BibliotecaApp bibliotecaApp) {
         super(id, name, bibliotecaApp);
     }
 
     @Override
-    public void execute() {
-        String checkoutMovieName = console.getNextString();
-        List<Movie> moviesAfterCheckout = new ArrayList<Movie>();
-        List<Movie> beforeCheckout = bibliotecaApp.getMovies();
-        for (Movie movie : beforeCheckout) {
-            if (!checkoutMovieName.equals(movie.getName())) {
-                moviesAfterCheckout.add(movie);
-            } else {
-                bibliotecaApp.getCheckedOutMovies().add(movie);
-            }
-        }
-        bibliotecaApp.setMovies(moviesAfterCheckout);
-        if (beforeCheckout.size() > moviesAfterCheckout.size()) {
-            console.println("Thank you!Enjoy the Movie");
-        } else {
-            console.println("That Movie is not available.");
-        }
+    public void printFailureInfo() {
+        console.println("That Movie is not available.");
+    }
+
+    @Override
+    public void printSuccessInfo() {
+        console.println("Thank you!Enjoy the Movie");
+    }
+
+    @Override
+    public void setItems(List itemAfterCheckout) {
+        bibliotecaApp.setMovies(itemAfterCheckout);
+    }
+
+    @Override
+    public List getCheckedoutItems() {
+        return bibliotecaApp.getCheckedOutMovies();
+    }
+
+    @Override
+    public List getAvailableItems() {
+        return bibliotecaApp.getMovies();
     }
 }

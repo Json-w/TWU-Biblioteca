@@ -1,6 +1,6 @@
 package com.twu.biblioteca.entity;
 
-public class Movie {
+public class Movie extends Item{
     public static final String COLUMN_GAP = "     ";
     private String name;
     private int year;
