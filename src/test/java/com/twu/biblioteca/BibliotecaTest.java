@@ -138,6 +138,14 @@ public class BibliotecaTest {
         inOrder.verify(console).println("Thank you for returning the book.");
     }
 
+    @Test
+    public void should_list_movie_when_choose_list_movie_option() throws Exception {
+        when(console.getNextInt()).thenReturn(4).thenReturn(0);
+
+        new BibliotecaApp(console).start();
+        verify(console).println("Zootopia     Byron Howard     2016");
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(null);
