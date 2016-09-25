@@ -2,26 +2,20 @@ package com.twu.biblioteca.option;
 
 import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.entity.Book;
-import com.twu.biblioteca.entity.Console;
 
 import java.util.List;
 
 public class ReturnBookOption extends Option {
-    private Console console;
-    private BibliotecaApp bibliotecaApp;
-
-    public ReturnBookOption(int id, String name,BibliotecaApp bibliotecaApp) {
-        super(id, name);
-        this.bibliotecaApp = bibliotecaApp;
-        this.console = bibliotecaApp.getConsole();
+    public ReturnBookOption(int id, String name, BibliotecaApp bibliotecaApp) {
+        super(id, name, bibliotecaApp);
     }
 
     @Override
     public void execute() {
         String readyReturnBookName = console.getNextString();
-        if(validateBookAndDeleteItOnCheckedOutBooks(readyReturnBookName)){
+        if (validateBookAndDeleteItOnCheckedOutBooks(readyReturnBookName)) {
             console.println("Thank you for returning the book.");
-        }else{
+        } else {
             console.println("That is not a valid book to return.");
         }
     }
