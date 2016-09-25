@@ -19,21 +19,7 @@ public class ListBooksOption extends Option {
     @Override
     public void execute() {
         for (Book book : bibliotecaApp.getBooks()) {
-            StringBuffer detailInfo = formatBookInfo(book);
-            console.println(detailInfo.toString());
+            console.println(book.toString());
         }
-    }
-
-    private StringBuffer formatBookInfo(Book book) {
-        StringBuffer detailInfo = new StringBuffer(book.getName());
-        if (book.getAuthor() != null) {
-            detailInfo.append(COLUMN_GAP);
-            detailInfo.append(book.getAuthor());
-        }
-        if (book.getPublishYear() != 0) {
-            detailInfo.append("     ");
-            detailInfo.append(book.getPublishYear());
-        }
-        return detailInfo;
     }
 }

@@ -19,25 +19,7 @@ public class ListMovieOption extends Option {
     @Override
     public void execute() {
         for (Movie movie : bibliotecaApp.getMovies()) {
-            StringBuffer detailInfo = formatMovieInfo(movie);
-            console.println(detailInfo.toString());
+            console.println(movie.toString());
         }
-    }
-
-    private StringBuffer formatMovieInfo(Movie movie) {
-        StringBuffer detailInfo = new StringBuffer(movie.getName());
-        if (movie.getDirector() != null) {
-            detailInfo.append(COLUMN_GAP);
-            detailInfo.append(movie.getDirector());
-        }
-        if (movie.getYear() != 0) {
-            detailInfo.append(COLUMN_GAP);
-            detailInfo.append(movie.getYear());
-        }
-        if (movie.getRating() != null) {
-            detailInfo.append(COLUMN_GAP);
-            detailInfo.append(movie.getRating());
-        }
-        return detailInfo;
     }
 }

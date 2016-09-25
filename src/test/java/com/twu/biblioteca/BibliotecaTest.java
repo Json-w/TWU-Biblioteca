@@ -20,6 +20,7 @@ public class BibliotecaTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private Console console;
     private InOrder inOrder;
+
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(outContent));
@@ -37,9 +38,9 @@ public class BibliotecaTest {
     public void should_list_all_books_in_repo() throws Exception {
         //given
         List<Book> books = new ArrayList<Book>();
-        books.add(new Book("Head First Java"));
-        books.add(new Book("Head First Html"));
-        books.add(new Book("Head First Design"));
+        books.add(new Book("Head First Java", "Kathy Sierra Bert Bates", 2007));
+        books.add(new Book("Head First Html", "test", 2008));
+        books.add(new Book("Head First Design", "test", 2009));
 
         //when
         BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
@@ -48,23 +49,23 @@ public class BibliotecaTest {
         bibliotecaApp.start();
 
         //then
-        inOrder.verify(console,times(1)).println("Head First Java");
-        inOrder.verify(console,times(1)).println("Head First Html");
-        inOrder.verify(console,times(1)).println("Head First Design");
+        inOrder.verify(console, times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        inOrder.verify(console, times(1)).println("Head First Html     test     2008");
+        inOrder.verify(console, times(1)).println("Head First Design     test     2009");
     }
 
     @Test
     public void should_list_detail_info_of_book() throws Exception {
 
         List<Book> books = new ArrayList<Book>();
-        books.add(new Book("Head First Java","Kathy Sierra Bert Bates",2007));
+        books.add(new Book("Head First Java", "Kathy Sierra Bert Bates", 2007));
 
         BibliotecaApp bibliotecaApp = new BibliotecaApp(console);
         bibliotecaApp.setBooks(books);
         when(console.getNextInt()).thenReturn(1).thenReturn(0);
         bibliotecaApp.start();
 
-        verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        verify(console, times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @Test
@@ -73,7 +74,7 @@ public class BibliotecaTest {
         when(console.getNextInt()).thenReturn(0);
         bibliotecaApp.start();
 
-        inOrder.verify(console,times(1)).println("Welcome to Biblioteca!!");
+        inOrder.verify(console, times(1)).println("Welcome to Biblioteca!!");
         inOrder.verify(console).println("**********Menu**********");
         inOrder.verify(console).println("1.listBooks");
     }
@@ -84,7 +85,7 @@ public class BibliotecaTest {
 
         new BibliotecaApp(console).start();
 
-        verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        verify(console, times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @Test
@@ -93,8 +94,8 @@ public class BibliotecaTest {
 
         new BibliotecaApp(console).start();
 
-        inOrder.verify(console,times(1)).println("invalid menu option,please enter correct option.");
-        inOrder.verify(console,times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
+        inOrder.verify(console, times(1)).println("invalid menu option,please enter correct option.");
+        inOrder.verify(console, times(1)).println("Head First Java     Kathy Sierra Bert Bates     2007");
     }
 
     @Test
@@ -103,7 +104,7 @@ public class BibliotecaTest {
 
         new BibliotecaApp(console).start();
 
-        verify(console,times(1)).println("invalid menu option,please enter correct option.");
+        verify(console, times(1)).println("invalid menu option,please enter correct option.");
     }
 
     @Test
@@ -143,7 +144,7 @@ public class BibliotecaTest {
         when(console.getNextInt()).thenReturn(4).thenReturn(0);
 
         new BibliotecaApp(console).start();
-        verify(console).println("Zootopia     Byron Howard     2016");
+        verify(console).println("Zootopia     Byron Howard     2016     null");
     }
 
     @After

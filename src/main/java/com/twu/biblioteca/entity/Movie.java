@@ -1,6 +1,7 @@
 package com.twu.biblioteca.entity;
 
 public class Movie {
+    public static final String COLUMN_GAP = "     ";
     private String name;
     private int year;
     private String director;
@@ -43,5 +44,10 @@ public class Movie {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return name + COLUMN_GAP + director + COLUMN_GAP + year + COLUMN_GAP + rating;
     }
 }

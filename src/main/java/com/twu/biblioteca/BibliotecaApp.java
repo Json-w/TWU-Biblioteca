@@ -20,18 +20,27 @@ public class BibliotecaApp {
 
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
-        initBooks();
-        initMovies();
+        initBiblioteca();
     }
 
     public BibliotecaApp(Console console) {
         this.console = console;
-        this.menu = initMenu();
+        this.menu = initMenu(this.console);
+        initBiblioteca();
+    }
+
+    public BibliotecaApp(Menu menu, Console console) {
+        this.menu = menu;
+        this.console = console;
+        initBiblioteca();
+    }
+
+    private void initBiblioteca() {
         initBooks();
         initMovies();
     }
 
-    private Menu initMenu() {
+    private Menu initMenu(Console console) {
         List<Option> options = new ArrayList<Option>();
         options.add(new ListBooksOption(1, "listBooks", this));
         options.add(new CheckOutBookOption(2, "checkout book", this));
@@ -51,13 +60,6 @@ public class BibliotecaApp {
     private void initMovies() {
         movies = new ArrayList<Movie>();
         movies.add(new Movie("Zootopia", 2016, "Byron Howard", null));
-    }
-
-    public BibliotecaApp(Menu menu, Console console) {
-        this.menu = menu;
-        this.console = console;
-        initBooks();
-        initMovies();
     }
 
     public void start() {

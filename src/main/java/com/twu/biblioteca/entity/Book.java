@@ -1,13 +1,10 @@
 package com.twu.biblioteca.entity;
 
 public class Book {
+    public static final String COLUMN_GAP = "     ";
     private String name;
     private String author;
     private int publishYear;
-
-    public Book(String name) {
-        this.name = name;
-    }
 
     public Book(String name, String author, int publishYear) {
         this.name = name;
@@ -29,10 +26,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", publishYear=" + publishYear +
-                '}';
+        StringBuffer bookDesc = new StringBuffer(name);
+        return name + COLUMN_GAP + author + COLUMN_GAP + publishYear;
     }
 }
