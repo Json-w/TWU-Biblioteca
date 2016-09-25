@@ -17,6 +17,7 @@ public class BibliotecaApp {
     private int appStatus;
     private List<Book> checkedOutBooks = new ArrayList<Book>();
     private List<Movie> movies;
+    private List<Movie> checkedOutMovies = new ArrayList<Movie>();
 
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
@@ -107,5 +108,13 @@ public class BibliotecaApp {
 
     public List<Movie> getMovies() {
         return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
+    public List<Movie> getCheckedOutMovies() {
+        return checkedOutMovies;
     }
 }
