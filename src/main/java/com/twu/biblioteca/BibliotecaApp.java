@@ -76,7 +76,7 @@ public class BibliotecaApp {
         console.println("Welcome to Biblioteca!!");
         while (true) {
             if(loginUser!=null){
-                menu.getOptions().add(new ShowPersonalInfoOption(7,"show personal information",this));
+                menu.getOptions().add(6,new ShowPersonalInfoOption(7,"show personal information",this));
             }
             menu.show();
             int chooseResult;
