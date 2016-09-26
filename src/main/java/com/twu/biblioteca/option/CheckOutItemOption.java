@@ -14,6 +14,8 @@ public abstract class CheckOutItemOption<T extends Item> extends Option{
 
     @Override
     public void execute() {
+        if (!checkLogin()) return;
+
         String checkoutItemName = console.getNextString();
         List<T> itemsAfterCheckout = new ArrayList<T>();
         List<T> beforeCheckout = getAvailableItems();
@@ -21,6 +23,7 @@ public abstract class CheckOutItemOption<T extends Item> extends Option{
             if (!checkoutItemName.equals(t.getName())) {
                 itemsAfterCheckout.add(t);
             } else {
+                t.setCheckOutUser(bibliotecaApp.getLoginUser().getUsername());
                 getCheckedoutItems().add(t);
             }
         }
@@ -30,6 +33,14 @@ public abstract class CheckOutItemOption<T extends Item> extends Option{
         } else {
             printFailureInfo();
         }
+    }
+
+    private boolean checkLogin() {
+        if(bibliotecaApp.getLoginUser()==null){
+            console.println("please login!!");
+            return false;
+        }
+        return true;
     }
 
     public abstract void printFailureInfo();

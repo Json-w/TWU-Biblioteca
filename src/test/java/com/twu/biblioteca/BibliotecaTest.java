@@ -131,8 +131,8 @@ public class BibliotecaTest {
 
     @Test
     public void should_return_book_success() throws Exception {
-        when(console.getNextInt()).thenReturn(2).thenReturn(1).thenReturn(3).thenReturn(0);
-        when(console.getNextString()).thenReturn("Refactor").thenReturn("Refactor");
+        when(console.getNextInt()).thenReturn(9).thenReturn(2).thenReturn(1).thenReturn(3).thenReturn(0);
+        when(console.getNextString()).thenReturn("peiwang").thenReturn("123456").thenReturn("Refactor").thenReturn("Refactor");
 
         new BibliotecaApp(console).start();
         inOrder.verify(console).println("3.return book");
@@ -149,8 +149,8 @@ public class BibliotecaTest {
 
     @Test
     public void should_checkout_movie() throws Exception {
-        when(console.getNextInt()).thenReturn(5).thenReturn(4).thenReturn(0);
-        when(console.getNextString()).thenReturn("Zootopia");
+        when(console.getNextInt()).thenReturn(9).thenReturn(5).thenReturn(4).thenReturn(0);
+        when(console.getNextString()).thenReturn("peiwang").thenReturn("123456").thenReturn("Zootopia");
 
         new BibliotecaApp(console).start();
 
@@ -161,8 +161,8 @@ public class BibliotecaTest {
 
     @Test
     public void should_return_movie_success() throws Exception {
-        when(console.getNextInt()).thenReturn(5).thenReturn(6).thenReturn(4).thenReturn(0);
-        when(console.getNextString()).thenReturn("Zootopia").thenReturn("Zootopia");
+        when(console.getNextInt()).thenReturn(9).thenReturn(5).thenReturn(6).thenReturn(4).thenReturn(0);
+        when(console.getNextString()).thenReturn("peiwang").thenReturn("123456").thenReturn("Zootopia").thenReturn("Zootopia");
 
         new BibliotecaApp(console).start();
 

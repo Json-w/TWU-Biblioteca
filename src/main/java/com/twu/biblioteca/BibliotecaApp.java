@@ -16,7 +16,7 @@ public class BibliotecaApp {
     private List<Movie> movies;
     private List<Movie> checkedOutMovies = new ArrayList<Movie>();
     private List<User> users;
-
+    private User loginUser;
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
         initBiblioteca();
@@ -54,6 +54,7 @@ public class BibliotecaApp {
         options.add(new ListMovieOption(4,"list movies",this));
         options.add(new CheckOutMovieOption(5,"checkout movie",this));
         options.add(new ReturnMovieOption(6,"return movie",this));
+        options.add(new LoginOption(9,"login",this));
         options.add(new ExitOption(0, "quit", this));
         Menu menu = new Menu(options, console);
         return menu;
@@ -135,5 +136,13 @@ public class BibliotecaApp {
 
     public void setCheckedOutMovies(List<Movie> checkedOutMovies) {
         this.checkedOutMovies = checkedOutMovies;
+    }
+
+    public User getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(User loginUser) {
+        this.loginUser = loginUser;
     }
 }

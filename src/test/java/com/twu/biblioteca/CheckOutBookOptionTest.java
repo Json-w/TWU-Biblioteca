@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.entity.Console;
+import com.twu.biblioteca.entity.User;
 import com.twu.biblioteca.option.CheckOutBookOption;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class CheckOutBookOptionTest {
         books.add(new Book("Head First Java", "Kathy Sierra Bert Bates", 2007));
         books.add(new Book("Refactor", "Martin Flower", 2008));
         bibliotecaApp.setBooks(books);
-
+        bibliotecaApp.setLoginUser(new User("peiwang","123456"));
         checkOutBookOption = new CheckOutBookOption(2, "Check out book", bibliotecaApp);
     }
 
@@ -48,5 +49,15 @@ public class CheckOutBookOptionTest {
 
         checkOutBookOption.execute();
         verify(console).println("That book is not available.");
+    }
+
+    @Test
+    public void should_record_user_who_checked_out_the_book() throws Exception {
+        when(console.getNextString()).thenReturn("Refactor");
+
+        checkOutBookOption.execute();
+
+        assertThat(bibliotecaApp.getBooks().size(),is(1));
+        assertThat(bibliotecaApp.getCheckedOutBooks().get(0).getCheckOutUser(),is("peiwang"));
     }
 }

@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.entity.Console;
 import com.twu.biblioteca.entity.Movie;
+import com.twu.biblioteca.entity.User;
 import com.twu.biblioteca.option.CheckOutMovieOption;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +29,7 @@ public class CheckOutMovieOptionTest {
         List<Movie> movies = new ArrayList<Movie>();
         movies.add(new Movie("Zootopia", 2016, "Byron Howard", 5));
         bibliotecaApp.setMovies(movies);
+        bibliotecaApp.setLoginUser(new User("peiwang","123456"));
     }
 
     @Test
@@ -47,5 +49,15 @@ public class CheckOutMovieOptionTest {
         checkOutMovieOption.execute();
 
         verify(console).println("That Movie is not available.");
+    }
+
+    @Test
+    public void should_record_user_who_checked_out_the_movie() throws Exception {
+        when(console.getNextString()).thenReturn("Zootopia");
+
+        checkOutMovieOption.execute();
+
+        assertThat(bibliotecaApp.getMovies().size(),is(0));
+        assertThat(bibliotecaApp.getCheckedOutMovies().get(0).getCheckOutUser(),is("peiwang"));
     }
 }

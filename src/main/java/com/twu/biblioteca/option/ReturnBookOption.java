@@ -34,17 +34,4 @@ public class ReturnBookOption extends ReturnItemOption {
     public List getCheckedOutItems() {
         return bibliotecaApp.getCheckedOutBooks();
     }
-
-    private boolean validateBookAndDeleteItOnCheckedOutBooks(String readyReturnBookName) {
-        List<Book> checkedOutBooks = bibliotecaApp.getCheckedOutBooks();
-        for (Book book : checkedOutBooks) {
-            if (book.getName().equals(readyReturnBookName)) {
-                checkedOutBooks.remove(book);
-                bibliotecaApp.getBooks().add(book);
-                bibliotecaApp.setCheckedOutBooks(checkedOutBooks);
-                return true;
-            }
-        }
-        return false;
-    }
 }

@@ -17,19 +17,22 @@ public class LoginOption extends Option {
         String password = console.getNextString();
 
         for (User user : bibliotecaApp.getUsers()) {
-            validateUser(username, password, user);
+            if(validateUser(username, password, user)){
+                bibliotecaApp.setLoginUser(user);
+                break;
+            }else {
+                console.println("please input correct username and password!");
+            }
         }
     }
 
-    private void validateUser(String username, String password, User user) {
+    private boolean validateUser(String username, String password, User user) {
         if (user.getUsername().equals(username)) {
             if (user.getPassword().equals(password)) {
                 console.println("Welcome " + username);
-            } else {
-                console.println("please input correct username and password!");
+                return true;
             }
-        } else {
-            console.println("please input correct username and password!");
         }
+        return false;
     }
 }
