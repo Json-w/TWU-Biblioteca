@@ -12,6 +12,7 @@ public abstract class ReturnItemOption<T extends Item> extends Option{
 
     @Override
     public void execute() {
+        if (!checkLogin()) return;
         String readyReturnItemName = console.getNextString();
         if (validateItemAndDeleteItOnCheckedOutItems(readyReturnItemName)) {
             printSuccessInfo();
@@ -20,6 +21,13 @@ public abstract class ReturnItemOption<T extends Item> extends Option{
         }
     }
 
+    private boolean checkLogin() {
+        if(bibliotecaApp.getLoginUser()==null){
+            console.println("please login!!");
+            return false;
+        }
+        return true;
+    }
     public abstract void printSuccessInfo();
 
     public abstract void printFailureInfo();

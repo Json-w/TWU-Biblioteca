@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.entity.Console;
 import com.twu.biblioteca.entity.Movie;
+import com.twu.biblioteca.entity.User;
 import com.twu.biblioteca.option.ReturnMovieOption;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +32,7 @@ public class ReturnMovieOptionTest {
         bibliotecaApp.setCheckedOutMovies(checkedOutMovies);
         bibliotecaApp.setMovies(availableMovies);
         returnMovieOption = new ReturnMovieOption(6,"return movie",bibliotecaApp);
+        bibliotecaApp.setLoginUser(new User("peiwang","123456"));
     }
 
     @Test

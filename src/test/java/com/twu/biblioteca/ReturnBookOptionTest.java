@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.entity.Console;
+import com.twu.biblioteca.entity.User;
 import com.twu.biblioteca.option.ReturnBookOption;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,6 +30,7 @@ public class ReturnBookOptionTest {
         bibliotecaApp.setBooks(allBooks);
         bibliotecaApp.setCheckedOutBooks(checkedOutBooks);
         returnBookOption = new ReturnBookOption(3,"returnBook",bibliotecaApp);
+        bibliotecaApp.setLoginUser(new User("peiwang","123456"));
     }
 
     @Test
@@ -54,5 +56,14 @@ public class ReturnBookOptionTest {
         returnBookOption.execute();
 
         verify(console).println("That is not a valid book to return.");
+    }
+
+    @Test
+    public void should_show_notification_when_no_login_user() throws Exception {
+        bibliotecaApp.setLoginUser(null);
+
+        returnBookOption.execute();
+
+        verify(console).println("please login!!");
     }
 }
