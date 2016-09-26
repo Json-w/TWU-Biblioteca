@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ReturnMovieOptionTest {
     private BibliotecaApp bibliotecaApp;
@@ -53,5 +52,14 @@ public class ReturnMovieOptionTest {
         returnMovieOption.execute();
 
         verify(console).println("That is not a valid movie to return.");
+    }
+
+    @Test
+    public void checkout_user_should_be_null_after_return_the_book() throws Exception {
+        when(console.getNextString()).thenReturn("Zootopia");
+
+        returnMovieOption.execute();
+
+        assertThat(bibliotecaApp.getMovies().get(0).getCheckOutUser(),nullValue());
     }
 }

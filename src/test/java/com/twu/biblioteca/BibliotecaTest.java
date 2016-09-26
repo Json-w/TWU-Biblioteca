@@ -171,6 +171,23 @@ public class BibliotecaTest {
         inOrder.verify(console).println("Zootopia     Byron Howard     2016     unrated");
     }
 
+    @Test
+    public void should_hide_information_option_on_menu_before_login() throws Exception {
+        new BibliotecaApp(console).start();
+
+        verify(console,never()).println("7.show personal information");
+    }
+
+    @Test
+    public void should_show_information_option_on_menu_after_login() throws Exception {
+        when(console.getNextInt()).thenReturn(9).thenReturn(0);
+        when(console.getNextString()).thenReturn("peiwang").thenReturn("123456");
+
+        new BibliotecaApp(console).start();
+
+        verify(console).println("7.show personal information");
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(null);
