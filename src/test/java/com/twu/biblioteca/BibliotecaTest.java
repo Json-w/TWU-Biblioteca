@@ -188,6 +188,16 @@ public class BibliotecaTest {
         verify(console).println("7.show personal information");
     }
 
+    @Test
+    public void should_show_personal_information_when_choose_show_personal_information_option() throws Exception {
+        when(console.getNextInt()).thenReturn(9).thenReturn(7).thenReturn(0);
+        when(console.getNextString()).thenReturn("peiwang").thenReturn("123456");
+
+        new BibliotecaApp(console).start();
+
+        verify(console).println("username='peiwang', email='', phone=''");
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(null);

@@ -1,6 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.option;
 
-import com.twu.biblioteca.option.Option;
+import com.twu.biblioteca.BibliotecaApp;
 
 public class ShowPersonalInfoOption extends Option {
     public ShowPersonalInfoOption(int id, String name, BibliotecaApp bibliotecaApp) {
