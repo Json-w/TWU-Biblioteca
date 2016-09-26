@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.entity.Book;
-import com.twu.biblioteca.entity.Console;
-import com.twu.biblioteca.entity.Menu;
-import com.twu.biblioteca.entity.Movie;
+import com.twu.biblioteca.entity.*;
 import com.twu.biblioteca.option.*;
 
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ public class BibliotecaApp {
     private List<Book> checkedOutBooks = new ArrayList<Book>();
     private List<Movie> movies;
     private List<Movie> checkedOutMovies = new ArrayList<Movie>();
+    private List<User> users;
 
     public BibliotecaApp(Menu menu) {
         this.menu = menu;
@@ -116,5 +114,13 @@ public class BibliotecaApp {
 
     public List<Movie> getCheckedOutMovies() {
         return checkedOutMovies;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }
