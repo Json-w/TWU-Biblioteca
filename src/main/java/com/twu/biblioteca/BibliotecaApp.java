@@ -37,6 +37,13 @@ public class BibliotecaApp {
     private void initBiblioteca() {
         initBooks();
         initMovies();
+        initUsers();
+    }
+
+    private void initUsers(){
+        users = new ArrayList<User>();
+        User user = new User("peiwang","123456");
+        users.add(user);
     }
 
     private Menu initMenu(Console console) {
@@ -45,6 +52,8 @@ public class BibliotecaApp {
         options.add(new CheckOutBookOption(2, "checkout book", this));
         options.add(new ReturnBookOption(3, "return book", this));
         options.add(new ListMovieOption(4,"list movies",this));
+        options.add(new CheckOutMovieOption(5,"checkout movie",this));
+        options.add(new ReturnMovieOption(6,"return movie",this));
         options.add(new ExitOption(0, "quit", this));
         Menu menu = new Menu(options, console);
         return menu;
@@ -122,5 +131,9 @@ public class BibliotecaApp {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public void setCheckedOutMovies(List<Movie> checkedOutMovies) {
+        this.checkedOutMovies = checkedOutMovies;
     }
 }

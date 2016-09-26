@@ -41,7 +41,7 @@ public class ReturnBookOptionTest {
     }
 
     @Test
-    public void should_show_failure_notification_message_when_return_book_success() throws Exception {
+    public void should_show_notification_message_when_return_book_success() throws Exception {
         when(console.getNextString()).thenReturn("Refactor");
         returnBookOption.execute();
 

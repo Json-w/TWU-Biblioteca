@@ -147,6 +147,30 @@ public class BibliotecaTest {
         verify(console).println("Zootopia     Byron Howard     2016     null");
     }
 
+    @Test
+    public void should_checkout_movie() throws Exception {
+        when(console.getNextInt()).thenReturn(5).thenReturn(4).thenReturn(0);
+        when(console.getNextString()).thenReturn("Zootopia");
+
+        new BibliotecaApp(console).start();
+
+        inOrder.verify(console).println("5.checkout movie");
+        inOrder.verify(console,never()).println("Zootopia     Byron Howard     2016     null");
+        inOrder.verify(console).println("Exit System!");
+    }
+
+    @Test
+    public void should_return_movie_success() throws Exception {
+        when(console.getNextInt()).thenReturn(5).thenReturn(6).thenReturn(4).thenReturn(0);
+        when(console.getNextString()).thenReturn("Zootopia").thenReturn("Zootopia");
+
+        new BibliotecaApp(console).start();
+
+        inOrder.verify(console).println("6.return movie");
+        inOrder.verify(console).println("Thank you!Enjoy the Movie");
+        inOrder.verify(console).println("Zootopia     Byron Howard     2016     null");
+    }
+
     @After
     public void tearDown() throws Exception {
         System.setOut(null);
