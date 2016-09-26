@@ -1,9 +1,8 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.entity.Book;
 import com.twu.biblioteca.entity.Console;
 import com.twu.biblioteca.entity.Movie;
-import com.twu.biblioteca.option.ReturnBookOption;
+import com.twu.biblioteca.option.ReturnMovieOption;
 import org.junit.Before;
 import org.junit.Test;
 
