@@ -144,7 +144,7 @@ public class BibliotecaTest {
         when(console.getNextInt()).thenReturn(4).thenReturn(0);
 
         new BibliotecaApp(console).start();
-        verify(console).println("Zootopia     Byron Howard     2016     null");
+        verify(console).println("Zootopia     Byron Howard     2016     unrated");
     }
 
     @Test
@@ -155,7 +155,7 @@ public class BibliotecaTest {
         new BibliotecaApp(console).start();
 
         inOrder.verify(console).println("5.checkout movie");
-        inOrder.verify(console,never()).println("Zootopia     Byron Howard     2016     null");
+        inOrder.verify(console,never()).println("Zootopia     Byron Howard     2016     unrated");
         inOrder.verify(console).println("Exit System!");
     }
 
@@ -168,7 +168,7 @@ public class BibliotecaTest {
 
         inOrder.verify(console).println("6.return movie");
         inOrder.verify(console).println("Thank you!Enjoy the Movie");
-        inOrder.verify(console).println("Zootopia     Byron Howard     2016     null");
+        inOrder.verify(console).println("Zootopia     Byron Howard     2016     unrated");
     }
 
     @After

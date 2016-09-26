@@ -1,6 +1,6 @@
 package com.twu.biblioteca.entity;
 
-public class Movie extends Item{
+public class Movie extends Item {
     public static final String COLUMN_GAP = "     ";
     private String name;
     private int year;
@@ -48,6 +48,12 @@ public class Movie extends Item{
 
     @Override
     public String toString() {
-        return name + COLUMN_GAP + director + COLUMN_GAP + year + COLUMN_GAP + rating;
+        String preStatement = name + COLUMN_GAP + director + COLUMN_GAP + year + COLUMN_GAP;
+        if (rating == null) {
+            return preStatement + "unrated";
+        } else {
+            return preStatement + rating;
+        }
+
     }
 }
